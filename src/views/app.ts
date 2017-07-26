@@ -26,7 +26,6 @@ export class AppComponent {
     imageLibrariesIsOpen: boolean = false;
     articleListIsOpen: boolean = false;
     isEdit: boolean = true;
-    isShowToolbar: boolean = true;
 
     docs: Array<any> = [{
         type: 'empty'
@@ -66,11 +65,7 @@ export class AppComponent {
     }
     setCurrentComponent(item: any) {
         if (this.currentComponent) {
-            this.isShowToolbar = false;
             this.currentComponent = item;
-            setTimeout(() => {
-                this.isShowToolbar = true;
-            });
         }
     }
 
