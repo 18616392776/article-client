@@ -89,7 +89,7 @@
       <ui-editor
               *ngIf="currentComponent.type === 'markdown'"
               (change)="updateHTML($event)"
-              [value]="currentComponent.rawValue">
+              [(ngModel)]="currentComponent.rawValue">
 
       </ui-editor>
       <tb-banner-settings *ngIf="currentComponent.type === 'slide'"></tb-banner-settings>

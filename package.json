@@ -41,7 +41,7 @@
     "marked": "^0.3.6",
     "normalize.css": "6.0.0",
     "rxjs": "5.4.2",
-    "tanbo-ui": "^1.4.26",
+    "tanbo-ui": "^1.4.27",
     "zone.js": "0.8.12"
   },
   "devDependencies": {
