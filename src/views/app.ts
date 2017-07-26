@@ -31,7 +31,7 @@ export class AppComponent {
         type: 'empty'
     }];
 
-    currentMode: any = this.docs[0];
+    currentComponent: any = this.docs[0];
 
     static docItemFactory(type: string) {
         switch (type) {
@@ -63,15 +63,15 @@ export class AppComponent {
                 return {};
         }
     }
-    setCurrentMode(item: any) {
-        if (this.currentMode) {
-            this.currentMode = item;
+    setCurrentComponent(item: any) {
+        if (this.currentComponent) {
+            this.currentComponent = item;
         }
     }
 
     updateHTML(value: any) {
-        this.currentMode.rawValue = value;
-        this.currentMode.value = md(value);
+        this.currentComponent.rawValue = value;
+        this.currentComponent.value = md(value);
     }
 
     editDocs(event: any = {}) {

@@ -81,18 +81,18 @@
     <div class="stage-pc">
       <tb-example [docs]="docs"
                   [isEdit]="isEdit"
-                  [currentMode]="currentMode"
+                  [currentComponent]="currentComponent"
                   (change)="editDocs($event)"
-                  (focus)="setCurrentMode($event)"></tb-example>
+                  (focus)="setCurrentComponent($event)"></tb-example>
     </div>
     <div *ngIf="isEdit">
       <ui-editor
-              *ngIf="currentMode.type === 'markdown'"
+              *ngIf="currentComponent.type === 'markdown'"
               (change)="updateHTML($event)"
-              [value]="currentMode.rawValue">
+              [value]="currentComponent.rawValue">
 
       </ui-editor>
-      <tb-banner-settings *ngIf="currentMode.type === 'slide'"></tb-banner-settings>
+      <tb-banner-settings *ngIf="currentComponent.type === 'slide'"></tb-banner-settings>
     </div>
   </div>
   <div class="stage-mobile container-fluid">
@@ -107,9 +107,9 @@
       <div class="mobile-screen">
         <tb-example [docs]="docs"
                     [isEdit]="isEdit"
-                    [currentMode]="currentMode"
+                    [currentComponent]="currentComponent"
                     (change)="editDocs($event)"
-                    (focus)="setCurrentMode($event)"></tb-example>
+                    (focus)="setCurrentComponent($event)"></tb-example>
       </div>
     </div>
   </div>

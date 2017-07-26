@@ -11,7 +11,7 @@ export class ExampleComponent {
     @Input()
     isEdit: boolean = true;
     @Input()
-    currentMode: any;
+    currentComponent: any;
     @Output()
     focus = new EventEmitter<any>();
     @Output()
