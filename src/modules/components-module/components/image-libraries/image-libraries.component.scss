@@ -1,0 +1,56 @@
+@import "../../../../assets/scss/varibles";
+
+:host {
+    display: flex;
+}
+
+.image-directory {
+    background-color: $color-gray-light;
+    overflow-y: scroll;
+    font-size: 12px;
+    .list {
+        width: 100px;
+    }
+}
+
+.toolkit {
+    font-size: 12px;
+    width: 100px;
+    .group {
+        padding: $grid-column-padding;
+    }
+    .btn {
+        margin-bottom: 10px;
+    }
+}
+
+.divider {
+    border-bottom: 1px solid $color-gray;
+}
+
+.image-list-wrap {
+    flex: 1;
+    padding: 20px 0;
+    height: 400px;
+    overflow-y: scroll;
+    font-size: 12px;
+}
+
+.image-list {
+    padding: 10px 0;
+    > .image-list-item {
+        float: left;
+        width: 160px;
+        height: 200px;
+        margin: 0 15px 30px;
+
+    }
+    .img-box {
+        border: 1px solid $color-gray-light;
+        width: 160px;
+        height: 160px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

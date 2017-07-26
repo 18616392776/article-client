@@ -1,0 +1,36 @@
+<div *ngFor="let item of docs; let i = index"
+     (click)="onFocus(item)"
+     class="item"
+     [ngClass]="{focus: item === currentMode, 'no-edit': !isEdit}">
+  <div class="toolkit" uiStopPropagation="click">
+    <button *ngIf="docs.length > 1"
+            type="button"
+            (click)="edit('remove', i)">
+      <span class="icon icon-cross"></span>
+    </button>
+    <button *ngIf="i > 0"
+            type="button"
+            (click)="edit('up', i)">
+      <span class="icon icon-arrow-up"></span>
+    </button>
+    <button *ngIf="i < docs.length - 1"
+            type="button"
+            (click)="edit('down', i)">
+      <span class="icon icon-arrow-down"></span>
+    </button>
+    <button type="button"
+            (click)="edit('plus', i)">
+      <span class="icon icon-plus"></span>
+    </button>
+  </div>
+
+  <div *ngIf="item.type === 'markdown'" [innerHTML]="item.value" class="clearfix container-fluid"></div>
+  <ui-slide *ngIf="item.type === 'slide'">
+    <ui-slide-item *ngFor="let bannerItem of item.banners" [ngStyle]="{backgroundImage: 'url('+bannerItem.src+')'}">
+      <a [href]="item.target || 'javascript:;'"></a>
+    </ui-slide-item>
+  </ui-slide>
+  <tb-component-container (setup)="edit('changeType', i, $event)" *ngIf="item.type === 'empty' && isEdit" class="empty form-inline">
+    拖入一个组件
+  </tb-component-container>
+</div>

@@ -1,0 +1,38 @@
+<tb-toolkit-wrapper>
+  <!--<tb-toolbar></tb-toolbar>-->
+  <tb-tool-content>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>序号</th>
+        <th>选择图片</th>
+        <th>链接到</th>
+        <th>跳转方式</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of settings; let i = index">
+        <td>{{i + 1}}</td>
+        <td>
+          <button class="btn btn-primary btn-sm"><span class="icon icon-search"></span> 选择图片</button>
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="item.target" class="form-control primary input-sm" placeholder="请输入链接地址">
+        </td>
+        <td>
+          <ui-select class="form-control input-sm primary" [ngClass]="{top: settings.length - i < 3 }" (change)="show($event)">
+            <ui-option value="aaa">当前页</ui-option>
+            <ui-option value="bbb">新打开一页</ui-option>
+          </ui-select>
+        </td>
+        <td>
+          <button type="button"><span class="icon icon-cross"></span></button>
+          <button type="button"><span class="icon icon-arrow-up"></span></button>
+          <button type="button"><span class="icon icon-arrow-down"></span></button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </tb-tool-content>
+</tb-toolkit-wrapper>

@@ -1,0 +1,8 @@
+@import "../../../../assets/scss/varibles";
+
+:host {
+    display: block;
+    &.drag-in {
+        box-shadow: inset 0 0 3px $color-primary;
+    }
+}

@@ -1,0 +1,41 @@
+<div class="image-directory">
+  <h3 class="list-title">图片分类</h3>
+  <div class="list">
+    <a href="javascript:;" class="list-item active">默认目录</a>
+    <a href="javascript:;" class="list-item">默认目录</a>
+    <a href="javascript:;" class="list-item">默认目录</a>
+    <a href="javascript:;" class="list-item">默认目录</a>
+  </div>
+  <p class="text-center">
+    <button class="btn btn-info btn-sm">新建文件夹</button>
+  </p>
+</div>
+<div class="image-list-wrap">
+  <div class="clearfix image-list">
+    <tb-image-preview [imgSrc]="item" class="image-list-item" *ngFor="let item of images"></tb-image-preview>
+    <div class="image-list-item">
+      <div class="img-box">
+        <button class="btn-info btn btn-lg"><span class="icon icon-plus"></span> 批量上传</button>
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+    <ui-pagination class="pagination-sm" [pages]="20"></ui-pagination>
+  </div>
+</div>
+<div class="toolkit">
+  <div class="group">
+    <label>
+      <ui-input type="checkbox" class="primary"></ui-input>
+      全选</label>
+    <br>
+    <label>
+      <ui-input type="checkbox" class="primary"></ui-input>
+      反选</label>
+  </div>
+  <div class="divider"></div>
+  <div class="group">
+    <button class="btn btn-sm btn-info"><span class="icon icon-enter"></span> 移动</button>
+    <button class="btn btn-sm btn-danger"><span class="icon icon-bin"></span> 删除</button>
+  </div>
+</div>

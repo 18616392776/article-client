@@ -1,0 +1,50 @@
+@import "../../../../assets/scss/varibles";
+
+.item {
+    min-height: 30px;
+    border: 1px dashed $color-gray;
+    margin: 0 -1px 30px;
+    position: relative;
+    &:hover {
+        .toolkit {
+            display: block;
+        }
+    }
+    &.focus {
+        margin: 0 -2px 30px;
+        border: 2px solid $color-primary;
+    }
+    &.no-edit {
+        min-height: inherit;
+        margin: 0;
+        border: none;
+        .toolkit {
+            display: none;
+        }
+    }
+    .empty {
+        padding: 15px;
+    }
+}
+
+.toolkit {
+    height: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: right;
+    display: none;
+    z-index: 2000;
+    button {
+        background: none;
+        border: none;
+        color: inherit;
+    }
+}
+
+ui-slide {
+    height: 300px;
+    ui-slide-item {
+        background-size: cover;
+    }
+}
