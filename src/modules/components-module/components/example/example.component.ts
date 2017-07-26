@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener, ElementRef } from '@angular/core';
 
 @Component({
     selector: 'tb-example',
@@ -10,15 +10,22 @@ export class ExampleComponent {
     docs: Array<any> = [];
     @Input()
     isEdit: boolean = true;
-
     @Input()
     currentMode: any;
-
     @Output()
     focus = new EventEmitter<any>();
-
     @Output()
     change = new EventEmitter<any>();
+
+    scrollTop: number = 0;
+
+    @HostListener('scroll')
+    scroll() {
+        this.scrollTop = this.elementRef.nativeElement.scrollTop;
+    }
+
+    constructor(private elementRef: ElementRef) {
+    }
 
     onFocus(item: any) {
         if (this.isEdit) {

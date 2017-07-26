@@ -30,7 +30,11 @@
       <a [href]="item.target || 'javascript:;'"></a>
     </ui-slide-item>
   </ui-slide>
-  <tb-component-container (setup)="edit('changeType', i, $event)" *ngIf="item.type === 'empty' && isEdit" class="empty form-inline">
+  <tb-component-container
+          [offsetDistanceTop]="scrollTop"
+          (setup)="edit('changeType', i, $event)"
+          *ngIf="item.type === 'empty' && isEdit"
+          class="empty form-inline">
     拖入一个组件
   </tb-component-container>
 </div>

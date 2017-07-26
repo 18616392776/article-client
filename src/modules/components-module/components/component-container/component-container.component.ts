@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, HostBinding, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ElementRef, Input, HostBinding, Output, EventEmitter } from '@angular/core';
 import { DragCoordinatesService, Position } from '../../services/drag-coordinates.service';
 import { getPosition } from '../../utils/position';
 import { collTest } from '../../utils/collision-test';
@@ -9,6 +9,8 @@ import { collTest } from '../../utils/collision-test';
     styleUrls: ['./component-container.component.scss']
 })
 export class ComponentContainerComponent implements OnInit {
+    @Input()
+    offsetDistanceTop: number = 0;
     @HostBinding('class.drag-in')
     isDragIn: boolean = false;
 
@@ -26,9 +28,9 @@ export class ComponentContainerComponent implements OnInit {
             let d = getPosition(nativeEle);
             selfPosition = {
                 left: d.x,
-                top: d.y,
+                top: d.y - this.offsetDistanceTop,
                 right: d.x + nativeEle.offsetWidth,
-                bottom: d.y + nativeEle.offsetHeight
+                bottom: d.y - this.offsetDistanceTop + nativeEle.offsetHeight
             };
         });
         this.dragCoordinatesService.$position.subscribe((p: Position) => {

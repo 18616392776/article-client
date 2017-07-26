@@ -1,5 +1,12 @@
 @import "../../../../assets/scss/varibles";
 
+:host {
+    display: block;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
 .item {
     min-height: 30px;
     border: 1px dashed $color-gray;

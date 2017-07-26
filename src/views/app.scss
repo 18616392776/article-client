@@ -1,14 +1,14 @@
 @import "../assets/scss/varibles";
 
-$header-z-index: 30000;
-$component-z-index: 20000;
+$header-z-index: 3000;
+$component-z-index: 2000;
 
 header {
     background-color: #444;
     height: 50px;
     line-height: 50px;
     position: relative;
-    z-index: 100;
+    z-index: $header-z-index;
     font-size: 15px;
     box-shadow: 0 0 3px rgba(0, 0, 0, .3);
     color: $color-gray;
@@ -103,10 +103,12 @@ header {
         display: flex;
         flex-direction: column;
         .stage-pc {
-            overflow-y: scroll;
             flex: 1;
+            overflow: hidden;
             border-bottom: 5px solid darken($color-gray-light, 5);
-            padding: 10px 15px;
+            tb-example {
+                padding: 10px 15px;
+            }
         }
     }
     .stage-mobile {
@@ -132,11 +134,8 @@ header {
     height: 526px;
     overflow: hidden;
     background-color: #fff;
-    > div {
-        height: 100%;
+    tb-example {
         margin-right: -10px;
-        overflow-x: hidden;
-        overflow-y: scroll;
     }
 }
 
