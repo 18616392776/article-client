@@ -92,7 +92,7 @@
               [(ngModel)]="currentComponent.rawValue">
 
       </ui-editor>
-      <tb-banner-settings *ngIf="currentComponent.type === 'slide'"></tb-banner-settings>
+      <tb-slide-settings *ngIf="currentComponent.type === 'slide'" [config]="currentComponent.config"></tb-slide-settings>
     </div>
   </div>
   <div class="stage-mobile container-fluid">

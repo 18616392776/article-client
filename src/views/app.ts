@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MarkdownType, SlideType, EmptyType } from '../modules/components-module/utils/help-types';
 
 import * as marked from 'marked';
 import * as hljs from 'highlight.js';
@@ -34,35 +35,45 @@ export class AppComponent {
     currentComponent: any = this.docs[0];
 
     static docItemFactory(type: string) {
+        const markdownConfig: MarkdownType = {
+            type: 'markdown',
+            value: '',
+            rawValue: ''
+        };
+        const slideConfig: SlideType = {
+            type: 'slide',
+            config: {
+                width: 600,
+                height: 300,
+                slideItems: [{
+                    src: require('../assets/images/2.jpg'),
+                    target: '',
+                    link: ''
+                }, {
+                    src: require('../assets/images/3.jpg'),
+                    target: '',
+                    link: ''
+                }, {
+                    src: require('../assets/images/4.jpeg'),
+                    target: '',
+                    link: ''
+                }]
+            }
+        };
+
+        const emptyConfig: EmptyType = {
+            type: 'empty'
+        };
         switch (type) {
             case 'markdown':
-                return {
-                    type: 'markdown',
-                    value: '',
-                    rawValue: ''
-                };
+                return markdownConfig;
             case 'slide':
-                return {
-                    type: 'slide',
-                    banners: [{
-                        src: require('../assets/images/2.jpg'),
-                        target: ''
-                    }, {
-                        src: require('../assets/images/3.jpg'),
-                        target: ''
-                    }, {
-                        src: require('../assets/images/4.jpeg'),
-                        target: ''
-                    }]
-                };
-            case 'empty':
-                return {
-                    type: 'empty'
-                };
+                return slideConfig;
             default:
-                return {};
+                return emptyConfig;
         }
     }
+
     setCurrentComponent(item: any) {
         if (this.currentComponent) {
             this.currentComponent = item;
@@ -88,7 +99,7 @@ export class AppComponent {
             case 'down':
                 this.docs.splice(event.index + 1, 0, this.docs.splice(event.index, 1)[0]);
                 break;
-            case 'plus':
+            case 'add':
                 this.docs.splice(event.index + 1, 0, AppComponent.docItemFactory('empty'));
                 break;
             case 'changeType':

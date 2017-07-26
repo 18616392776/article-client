@@ -19,15 +19,15 @@
       <span class="icon icon-arrow-down"></span>
     </button>
     <button type="button"
-            (click)="edit('plus', i)">
+            (click)="edit('add', i)">
       <span class="icon icon-plus"></span>
     </button>
   </div>
 
   <div *ngIf="item.type === 'markdown'" [innerHTML]="item.value" class="clearfix container-fluid"></div>
   <ui-slide *ngIf="item.type === 'slide'">
-    <ui-slide-item *ngFor="let bannerItem of item.banners" [ngStyle]="{backgroundImage: 'url('+bannerItem.src+')'}">
-      <a [href]="item.target || 'javascript:;'"></a>
+    <ui-slide-item *ngFor="let bannerItem of item.config.slideItems" [ngStyle]="{backgroundImage: 'url('+bannerItem.src+')'}">
+      <a [href]="bannerItem.link || 'javascript:;'" [target]="bannerItem.target"></a>
     </ui-slide-item>
   </ui-slide>
   <tb-component-container

@@ -1,0 +1,60 @@
+<tb-toolkit-wrapper>
+  <!--<tb-toolbar></tb-toolbar>-->
+  <tb-tool-content>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>序号</th>
+        <th>选择图片</th>
+        <th>链接到</th>
+        <th>跳转方式</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of config.slideItems; let i = index">
+        <td>{{i + 1}}</td>
+        <td>
+          <div class="input-group primary">
+            <input type="text" [(ngModel)]="item.src" class="form-control input-sm" placeholder="请输入图片地址">
+            <div class="input-addon">
+              <button class="btn btn-primary btn-sm"><span class="icon icon-folder-open"></span></button>
+            </div>
+          </div>
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="item.link" class="form-control primary input-sm" placeholder="请输入链接地址">
+        </td>
+        <td>
+          <ui-select class="form-control input-sm primary" [ngClass]="{top: config.slideItems.length - i < 3 }"
+                     [(ngModel)]="item.target">
+            <ui-option value="_self">当前页</ui-option>
+            <ui-option value="_blank">新打开一页</ui-option>
+          </ui-select>
+        </td>
+        <td class="text-right">
+          <button *ngIf="config.slideItems.length > 1"
+                  type="button"
+                  (click)="edit('remove', i)">
+            <span class="icon icon-cross"></span>
+          </button>
+          <button *ngIf="i > 0"
+                  type="button"
+                  (click)="edit('up', i)">
+            <span class="icon icon-arrow-up"></span>
+          </button>
+          <button *ngIf="i < config.slideItems.length - 1"
+                  type="button"
+                  (click)="edit('down', i)">
+            <span class="icon icon-arrow-down"></span>
+          </button>
+          <button type="button"
+                  (click)="edit('add', i)">
+            <span class="icon icon-plus"></span>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </tb-tool-content>
+</tb-toolkit-wrapper>

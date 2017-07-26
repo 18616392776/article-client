@@ -8,7 +8,7 @@ import { ToolbarComponent } from './components/toolkit-wrapper/toolbar/toolbar.c
 import { ToolContentComponent } from './components/toolkit-wrapper/tool-content/tool-content.component';
 
 import { ExampleComponent } from './components/example/example.component';
-import { BannerSettingsComponent } from './components/banner-settings/banner-settings.component';
+import { SlideSettingsComponent } from './components/slide-settings/slide-settings.component';
 import { ImageLibrariesComponent } from './components/image-libraries/image-libraries.component';
 import { ImagePreviewComponent } from './components/image-preview/image-preview.component';
 import { ComponentNavItemComponent } from './components/component-nav-item/component-nav-item.component';
@@ -29,7 +29,7 @@ import { DragCoordinatesService } from './services/drag-coordinates.service';
         ToolContentComponent,
 
         ExampleComponent,
-        BannerSettingsComponent,
+        SlideSettingsComponent,
         ImageLibrariesComponent,
         ImagePreviewComponent,
         ComponentNavItemComponent,
@@ -37,7 +37,7 @@ import { DragCoordinatesService } from './services/drag-coordinates.service';
     ],
     exports: [
         ExampleComponent,
-        BannerSettingsComponent,
+        SlideSettingsComponent,
         ImageLibrariesComponent,
         ComponentNavItemComponent,
         ComponentContainerComponent
