@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { UiFormsModule, UiComponentsModule, UiDirectivesModule } from 'tanbo-ui';
+import { UiFormsModule, UiComponentsModule, UiDirectivesModule, UiHttp } from 'tanbo-ui';
 
 import { ToolkitWrapperComponent } from './components/toolkit-wrapper/toolkit-wrapper.component';
 import { ToolbarComponent } from './components/toolkit-wrapper/toolbar/toolbar.component';
@@ -21,7 +22,8 @@ import { DragCoordinatesService } from './services/drag-coordinates.service';
         FormsModule,
         CommonModule,
         UiDirectivesModule,
-        UiComponentsModule
+        UiComponentsModule,
+        HttpModule
     ],
     declarations: [
         ToolkitWrapperComponent,
@@ -43,7 +45,8 @@ import { DragCoordinatesService } from './services/drag-coordinates.service';
         ComponentContainerComponent
     ],
     providers: [
-        DragCoordinatesService
+        DragCoordinatesService,
+        UiHttp
     ]
 })
 export class ComponentsModule {

@@ -1,3 +1,3 @@
 module.exports = {
-  api: ['http://localhost:8888', 'userName']
+  api: ['http://192.168.0.101:2222', '本地服务']
 };
