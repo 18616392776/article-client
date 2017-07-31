@@ -14,6 +14,8 @@ import { ImageLibrariesComponent } from './components/image-libraries/image-libr
 import { ImagePreviewComponent } from './components/image-preview/image-preview.component';
 import { ComponentNavItemComponent } from './components/component-nav-item/component-nav-item.component';
 import { ComponentContainerComponent } from './components/component-container/component-container.component';
+import { ArticleListComponent } from './components/article-list/article-list.component';
+
 import { DragCoordinatesService } from './services/drag-coordinates.service';
 
 @NgModule({
@@ -35,14 +37,16 @@ import { DragCoordinatesService } from './services/drag-coordinates.service';
         ImageLibrariesComponent,
         ImagePreviewComponent,
         ComponentNavItemComponent,
-        ComponentContainerComponent
+        ComponentContainerComponent,
+        ArticleListComponent
     ],
     exports: [
         ExampleComponent,
         SlideSettingsComponent,
         ImageLibrariesComponent,
         ComponentNavItemComponent,
-        ComponentContainerComponent
+        ComponentContainerComponent,
+        ArticleListComponent
     ],
     providers: [
         DragCoordinatesService,

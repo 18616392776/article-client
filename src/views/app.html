@@ -6,7 +6,7 @@
       </h1>
     </div>
     <div class="col-xs-5 article-title">
-      <input type="text" class="form-control primary" placeholder="请输入文章标题">
+      <input type="text" [(ngModel)]="article.title" class="form-control primary" placeholder="请输入文章标题">
     </div>
     <div class="col-xs-5 clearfix">
       <ul class="pull-right list-unstyled header-actions">
@@ -25,7 +25,7 @@
             </ui-drop-down-fixed>
             <ui-drop-down-menu class="color-default">
               <div>
-                fdsafdsafdas
+                <tb-article-list></tb-article-list>
               </div>
             </ui-drop-down-menu>
           </ui-drop-down>
@@ -44,7 +44,7 @@
         </li>
         <li class="split-line"></li>
         <li>
-          <button type="button" class="btn btn-primary btn-sm">保存</button>
+          <button type="button" (click)="addArticle()" class="btn btn-primary btn-sm">保存</button>
         </li>
         <li>
           <button type="button" class="btn btn-primary btn-sm">发布</button>

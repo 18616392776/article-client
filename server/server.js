@@ -25,7 +25,15 @@ app.use('/api', httpProxyMiddleware({
         console.log(`请求：${request.url}，代理到${proxyConfig.api[1]}：${proxyConfig.api[0]}${proxyRequest.path}`)
     }
 }));
-
+app.use('/public', httpProxyMiddleware({
+    target: proxyConfig.api[0],
+    pathRewrite: {
+        '^/public/': '/'
+    },
+    onProxyReq(proxyRequest, request, response) {
+        console.log(`请求：${request.url}，代理到${proxyConfig.api[1]}：${proxyConfig.api[0]}${proxyRequest.path}`)
+    }
+}));
 app.use(historyApiFallback({
     index: globalConfig.localPath
 }));

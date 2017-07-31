@@ -4,6 +4,8 @@ import { MarkdownType, SlideType, EmptyType } from '../modules/components-module
 import * as marked from 'marked';
 import * as hljs from 'highlight.js';
 
+import { AppService } from './app.service';
+
 const md = marked.setOptions({
     highlight: function (str: string, lang: string): string {
         if (lang && hljs.getLanguage(lang)) {
@@ -34,6 +36,10 @@ export class AppComponent {
 
     currentComponent: any = this.docs[0];
 
+    article: any = {
+        title: ''
+    };
+
     static docItemFactory(type: string) {
         const markdownConfig: MarkdownType = {
             type: 'markdown',
@@ -46,15 +52,15 @@ export class AppComponent {
                 width: 600,
                 height: 300,
                 slideItems: [{
-                    src: require('../assets/images/2.jpg'),
+                    src: '',
                     target: '',
                     link: ''
                 }, {
-                    src: require('../assets/images/3.jpg'),
+                    src: '',
                     target: '',
                     link: ''
                 }, {
-                    src: require('../assets/images/4.jpeg'),
+                    src: '',
                     target: '',
                     link: ''
                 }]
@@ -72,6 +78,9 @@ export class AppComponent {
             default:
                 return emptyConfig;
         }
+    }
+
+    constructor(private appService: AppService) {
     }
 
     setCurrentComponent(item: any) {
@@ -106,5 +115,12 @@ export class AppComponent {
                 this.docs.splice(event.index, 1, AppComponent.docItemFactory(event.targetType));
                 break;
         }
+    }
+
+    addArticle() {
+        this.appService.addArticle({
+            title: this.article.title,
+            sourceContent: JSON.stringify(this.docs)
+        })
     }
 }
