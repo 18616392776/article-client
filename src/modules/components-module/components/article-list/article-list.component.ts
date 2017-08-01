@@ -12,6 +12,7 @@ import { ArticleListService } from './article-list.service';
 
 export class ArticleListComponent implements OnInit {
     articleList: Array<any> = [];
+
     constructor(private articleListService: ArticleListService) {
     }
 
@@ -20,6 +21,6 @@ export class ArticleListComponent implements OnInit {
             if (response.success) {
                 this.articleList = response.data;
             }
-        })
+        });
     }
 }

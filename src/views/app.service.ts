@@ -7,7 +7,7 @@ export class AppService {
     }
 
     addArticle(article: any) {
-        return this.http.post('/api/add-article', {
+        return this.http.post('/add-article', {
             body: article
         });
     }

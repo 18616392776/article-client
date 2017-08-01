@@ -7,6 +7,6 @@ export class ArticleListService {
     }
 
     getArticls() {
-        return this.http.get('/api/get-articles');
+        return this.http.get('/get-articles');
     }
 }

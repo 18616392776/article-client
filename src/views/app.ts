@@ -23,7 +23,10 @@ const md = marked.setOptions({
 @Component({
     selector: 'tb-app',
     templateUrl: 'app.html',
-    styleUrls: ['./app.scss']
+    styleUrls: ['./app.scss'],
+    providers: [
+        AppService
+    ]
 })
 export class AppComponent {
     imageLibrariesIsOpen: boolean = false;
@@ -120,7 +123,7 @@ export class AppComponent {
     addArticle() {
         this.appService.addArticle({
             title: this.article.title,
-            sourceContent: JSON.stringify(this.docs)
-        })
+            content: JSON.stringify(this.docs)
+        });
     }
 }
