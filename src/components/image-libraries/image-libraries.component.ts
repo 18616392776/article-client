@@ -14,10 +14,10 @@ export class ImageLibrariesComponent {
     @ViewChild('fileupload')
     fileInput: ElementRef;
     images: Array<any> = [
-        require('../../../../assets/images/1.jpeg'),
-        require('../../../../assets/images/2.jpg'),
-        require('../../../../assets/images/3.jpg'),
-        require('../../../../assets/images/4.jpeg'),
+        require('../../assets/images/1.jpeg'),
+        require('../../assets/images/2.jpg'),
+        require('../../assets/images/3.jpg'),
+        require('../../assets/images/4.jpeg'),
     ];
 
     constructor(private imageLibrariesService: ImageLibrariesService) {

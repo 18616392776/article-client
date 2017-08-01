@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MarkdownType, SlideType, EmptyType } from '../modules/components-module/utils/help-types';
+import { MarkdownType, SlideType, EmptyType } from '../utils/help-types';
 
 import * as marked from 'marked';
 import * as hljs from 'highlight.js';
