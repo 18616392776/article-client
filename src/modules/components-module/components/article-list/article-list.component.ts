@@ -11,16 +11,29 @@ import { ArticleListService } from './article-list.service';
 })
 
 export class ArticleListComponent implements OnInit {
+    currentPage: number = 1;
+    pages: number = 1;
     articleList: Array<any> = [];
 
     constructor(private articleListService: ArticleListService) {
     }
 
     ngOnInit() {
-        this.articleListService.getArticls().then(response => {
+        this.getArticles();
+    }
+
+    getArticles() {
+        this.articleListService.getArticles(this.currentPage, 18).then(response => {
             if (response.success) {
-                this.articleList = response.data;
+                this.currentPage = response.data.currentPage;
+                this.pages = response.data.pages;
+                this.articleList = response.data.dataList;
             }
         });
+    }
+
+    change(page: number) {
+        this.currentPage = page;
+        this.getArticles();
     }
 }

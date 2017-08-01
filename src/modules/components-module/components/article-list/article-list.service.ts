@@ -6,7 +6,12 @@ export class ArticleListService {
     constructor(private http: UiHttp) {
     }
 
-    getArticls() {
-        return this.http.get('/get-articles');
+    getArticles(currentPage: number, pageSize: number = 10) {
+        return this.http.get('/get-articles', {
+            params: {
+                currentPage,
+                pageSize
+            }
+        });
     }
 }

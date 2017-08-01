@@ -20,6 +20,14 @@ html, body {
     scrollbar-darkshadow-color: #fff; /*滚动条暗边框（ThreedDarkShadow）颜色*/
 }
 
+a {
+    color: $color-primary;
+    text-decoration: none;
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
 /*---滚动条默认显示样式--*/
 ::-webkit-scrollbar-thumb {
     background-color: $color-gray-light;

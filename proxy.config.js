@@ -1,3 +1,5 @@
+const ip = require('./global.config').ip;
+
 module.exports = {
-  api: ['http://192.168.0.100:2222', '本地服务']
+    api: ['http://' + ip + ':2222', '本地服务']
 };
