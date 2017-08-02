@@ -7,7 +7,7 @@ export class ImageLibrariesService {
     }
 
     uploadImg(data: FormData) {
-        return this.http.upload('/upload', {
+        return this.http.upload('/image/upload', {
             body: data
         });
     }

@@ -7,13 +7,13 @@ export class AppService {
     }
 
     addArticle(article: any) {
-        return this.http.post('/add-article', {
+        return this.http.post('/article/add', {
             body: article
         });
     }
 
     getArticle(id: string | number) {
-        return this.http.get('/get-article', {
+        return this.http.get('/article/get', {
             params: {
                 id
             }
@@ -21,7 +21,13 @@ export class AppService {
     }
 
     updateArticle(article: any) {
-        return this.http.post('/update-article', {
+        return this.http.post('/article/update', {
+            body: article
+        });
+    }
+
+    publishArticle(article: any) {
+        return this.http.post('/article/publish', {
             body: article
         });
     }

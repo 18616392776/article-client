@@ -170,4 +170,15 @@ export class AppComponent {
             }
         });
     }
+
+    publish() {
+        this.appService.publishArticle(this.article).then(response => {
+            if (response.success) {
+                this.notifyController.push({
+                    content: '发布成功！',
+                    type: NotifyType.Success
+                });
+            }
+        });
+    }
 }

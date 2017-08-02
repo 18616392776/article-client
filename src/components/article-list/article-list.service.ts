@@ -7,7 +7,7 @@ export class ArticleListService {
     }
 
     getArticles(currentPage: number, pageSize: number = 10) {
-        return this.http.get('/get-articles', {
+        return this.http.get('/article/get-list', {
             params: {
                 currentPage,
                 pageSize
