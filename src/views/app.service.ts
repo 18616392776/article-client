@@ -11,4 +11,18 @@ export class AppService {
             body: article
         });
     }
+
+    getArticle(id: string | number) {
+        return this.http.get('/get-article', {
+            params: {
+                id
+            }
+        });
+    }
+
+    updateArticle(article: any) {
+        return this.http.post('/update-article', {
+            body: article
+        });
+    }
 }

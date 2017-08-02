@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MarkdownType, SlideType, EmptyType } from '../utils/help-types';
+import { NotifyController, NotifyType } from 'tanbo-ui';
 
 import * as marked from 'marked';
 import * as hljs from 'highlight.js';
@@ -33,15 +34,14 @@ export class AppComponent {
     articleListIsOpen: boolean = false;
     isEdit: boolean = true;
 
-    docs: Array<any> = [{
-        type: 'empty'
-    }];
-
-    currentComponent: any = this.docs[0];
-
     article: any = {
-        title: ''
+        title: '',
+        content: [{
+            type: 'empty'
+        }]
     };
+
+    currentComponent: any = this.article.content[0];
 
     static docItemFactory(type: string) {
         const markdownConfig: MarkdownType = {
@@ -83,7 +83,8 @@ export class AppComponent {
         }
     }
 
-    constructor(private appService: AppService) {
+    constructor(private notifyController: NotifyController,
+                private appService: AppService) {
     }
 
     setCurrentComponent(item: any) {
@@ -98,32 +99,75 @@ export class AppComponent {
     }
 
     editDocs(event: any = {}) {
-        if (event.index < 0 || event.index > this.docs.length) {
+        if (event.index < 0 || event.index > this.article.content.length) {
             return;
         }
         switch (event.type) {
             case 'remove':
-                this.docs.splice(event.index, 1);
+                this.article.content.splice(event.index, 1);
                 break;
             case 'up':
-                this.docs.splice(event.index - 1, 0, this.docs.splice(event.index, 1)[0]);
+                this.article.content.splice(event.index - 1,
+                    0,
+                    this.article.content.splice(event.index, 1)[0]);
                 break;
             case 'down':
-                this.docs.splice(event.index + 1, 0, this.docs.splice(event.index, 1)[0]);
+                this.article.content.splice(event.index + 1,
+                    0,
+                    this.article.content.splice(event.index, 1)[0]);
                 break;
             case 'add':
-                this.docs.splice(event.index + 1, 0, AppComponent.docItemFactory('empty'));
+                this.article.content.splice(event.index + 1,
+                    0,
+                    AppComponent.docItemFactory('empty'));
                 break;
             case 'changeType':
-                this.docs.splice(event.index, 1, AppComponent.docItemFactory(event.targetType));
+                this.article.content.splice(event.index,
+                    1,
+                    AppComponent.docItemFactory(event.targetType));
                 break;
         }
     }
 
     addArticle() {
-        this.appService.addArticle({
-            title: this.article.title,
-            content: JSON.stringify(this.docs)
+        if (this.article.hasOwnProperty('id')) {
+            let article = JSON.parse(JSON.stringify(this.article));
+            article.content = JSON.stringify(article.content);
+            this.appService.updateArticle(article).then(response => {
+                if (response.success) {
+                    this.notifyController.push({
+                        content: '更新成功！',
+                        type: NotifyType.Success
+                    });
+                } else {
+                    this.notifyController.push({
+                        content: response.message,
+                        type: NotifyType.Danger
+                    });
+                }
+            });
+        } else {
+            this.appService.addArticle({
+                title: this.article.title,
+                content: JSON.stringify(this.article.content)
+            }).then(response => {
+                if (!response.success) {
+                    this.notifyController.push({
+                        content: response.message,
+                        type: NotifyType.Warning
+                    });
+                }
+            });
+        }
+
+    }
+
+    changeArticle(id: string) {
+        this.appService.getArticle(id).then(response => {
+            if (response.success) {
+                response.data.content = JSON.parse(response.data.content);
+                this.article = response.data;
+            }
         });
     }
 }

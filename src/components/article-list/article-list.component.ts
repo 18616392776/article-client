@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ArticleListService } from './article-list.service';
 
 @Component({
@@ -11,6 +11,9 @@ import { ArticleListService } from './article-list.service';
 })
 
 export class ArticleListComponent implements OnInit {
+    @Output()
+    selected = new EventEmitter<string>();
+
     currentPage: number = 1;
     pages: number = 1;
     articleList: Array<any> = [];
@@ -35,5 +38,9 @@ export class ArticleListComponent implements OnInit {
     change(page: number) {
         this.currentPage = page;
         this.getArticles();
+    }
+
+    onSelected(id: string) {
+        this.selected.emit(id);
     }
 }

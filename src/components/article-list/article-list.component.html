@@ -2,7 +2,7 @@
     <h3>文章列表</h3>
     <ul class="row list-unstyled">
         <li class="text-overflow col-sm-4" *ngFor="let item of articleList">
-            <a href="javascript:;">{{item.title}}</a>
+            <a (click)="onSelected(item.id)" href="javascript:;">{{item.title}}</a>
         </li>
     </ul>
     <div class="text-center">

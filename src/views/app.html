@@ -1,120 +1,122 @@
-<header class="container-fluid">
-  <div class="row">
-    <div class="col-xs-2">
-      <h1 class="logo">
-        <span class="icon-cloud icon"></span> 云宝宝
-      </h1>
+<ui-app>
+  <header class="container-fluid">
+    <div class="row">
+      <div class="col-xs-2">
+        <h1 class="logo">
+          <span class="icon-cloud icon"></span> 云宝宝
+        </h1>
+      </div>
+      <div class="col-xs-5 article-title">
+        <input type="text" [(ngModel)]="article.title" class="form-control primary" placeholder="请输入文章标题">
+      </div>
+      <div class="col-xs-5 clearfix">
+        <ul class="pull-right list-unstyled header-actions">
+          <li>
+            <ui-switch class="primary" [(ngModel)]="isEdit"></ui-switch>
+            <label>
+              编辑/预览
+            </label>
+          </li>
+          <li class="split-line"></li>
+          <li>
+            <ui-drop-down class="image-libraries" [open]="articleListIsOpen"
+                          (trigger)="articleListIsOpen = !articleListIsOpen" (escape)="articleListIsOpen = false">
+              <ui-drop-down-fixed>
+                <a href="javascript:;" class="color-muted"><span class="icon icon-images"></span> 草稿库</a>
+              </ui-drop-down-fixed>
+              <ui-drop-down-menu class="color-default">
+                <div>
+                  <tb-article-list (selected)="changeArticle($event)"></tb-article-list>
+                </div>
+              </ui-drop-down-menu>
+            </ui-drop-down>
+          </li>
+          <li>
+            <ui-drop-down class="image-libraries" [open]="imageLibrariesIsOpen"
+                          (trigger)="imageLibrariesIsOpen = !imageLibrariesIsOpen"
+                          (escape)="imageLibrariesIsOpen = false">
+              <ui-drop-down-fixed>
+                <a href="javascript:;" class="color-muted"><span class="icon icon-images"></span> 图片空间</a>
+              </ui-drop-down-fixed>
+              <ui-drop-down-menu class="color-default">
+                <tb-image-libraries></tb-image-libraries>
+              </ui-drop-down-menu>
+            </ui-drop-down>
+          </li>
+          <li class="split-line"></li>
+          <li>
+            <button type="button" (click)="addArticle()" class="btn btn-primary btn-sm">保存</button>
+          </li>
+          <li>
+            <button type="button" class="btn btn-primary btn-sm">发布</button>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="col-xs-5 article-title">
-      <input type="text" [(ngModel)]="article.title" class="form-control primary" placeholder="请输入文章标题">
-    </div>
-    <div class="col-xs-5 clearfix">
-      <ul class="pull-right list-unstyled header-actions">
-        <li>
-          <ui-switch class="primary" [(ngModel)]="isEdit"></ui-switch>
-          <label>
-            编辑/预览
-          </label>
-        </li>
-        <li class="split-line"></li>
-        <li>
-          <ui-drop-down class="image-libraries" [open]="articleListIsOpen"
-                        (trigger)="articleListIsOpen = !articleListIsOpen" (escape)="articleListIsOpen = false">
-            <ui-drop-down-fixed>
-              <a href="javascript:;" class="color-muted"><span class="icon icon-images"></span> 草稿库</a>
-            </ui-drop-down-fixed>
-            <ui-drop-down-menu class="color-default">
-              <div>
-                <tb-article-list></tb-article-list>
-              </div>
-            </ui-drop-down-menu>
-          </ui-drop-down>
-        </li>
-        <li>
-          <ui-drop-down class="image-libraries" [open]="imageLibrariesIsOpen"
-                        (trigger)="imageLibrariesIsOpen = !imageLibrariesIsOpen"
-                        (escape)="imageLibrariesIsOpen = false">
-            <ui-drop-down-fixed>
-              <a href="javascript:;" class="color-muted"><span class="icon icon-images"></span> 图片空间</a>
-            </ui-drop-down-fixed>
-            <ui-drop-down-menu class="color-default">
-              <tb-image-libraries></tb-image-libraries>
-            </ui-drop-down-menu>
-          </ui-drop-down>
-        </li>
-        <li class="split-line"></li>
-        <li>
-          <button type="button" (click)="addArticle()" class="btn btn-primary btn-sm">保存</button>
-        </li>
-        <li>
-          <button type="button" class="btn btn-primary btn-sm">发布</button>
-        </li>
-      </ul>
-    </div>
-  </div>
-</header>
-<div class="page">
-  <div class="components">
-    <h3 class="list-title">组件</h3>
-    <div class="list">
-      <tb-component-nav-item [isEdit]="isEdit" type="markdown" class="list-item"><span class="icon icon-pencil"></span>
-        Markdown
-      </tb-component-nav-item>
-      <tb-component-nav-item [isEdit]="isEdit" type="slide" class="list-item"><span class="icon icon-flickr2"></span>
-        轮播图
-      </tb-component-nav-item>
+  </header>
+  <div class="page">
+    <div class="components">
+      <h3 class="list-title">组件</h3>
+      <div class="list">
+        <tb-component-nav-item [isEdit]="isEdit" type="markdown" class="list-item"><span class="icon icon-pencil"></span>
+          Markdown
+        </tb-component-nav-item>
+        <tb-component-nav-item [isEdit]="isEdit" type="slide" class="list-item"><span class="icon icon-flickr2"></span>
+          轮播图
+        </tb-component-nav-item>
 
+      </div>
+      <h3 class="list-title">正在编辑</h3>
+      <div class="list">
+        <tb-component-nav-item [isEdit]="isEdit" class="list-item"><span class="icon icon-play"></span> 视频
+        </tb-component-nav-item>
+        <tb-component-nav-item [isEdit]="isEdit" class="list-item"><span class="icon icon-music"></span> 音乐
+        </tb-component-nav-item>
+        <tb-component-nav-item [isEdit]="isEdit" class="list-item"><span class="icon icon-stats-bars"></span> 直方图
+        </tb-component-nav-item>
+        <tb-component-nav-item [isEdit]="isEdit" class="list-item"><span class="icon icon-stats-dots"></span> 折线图
+        </tb-component-nav-item>
+        <tb-component-nav-item [isEdit]="isEdit" class="list-item"><span class="icon icon-pie-chart"></span> 饼图
+        </tb-component-nav-item>
+        <tb-component-nav-item [isEdit]="isEdit" class="list-item"><span class="icon icon-map"></span> 地图
+        </tb-component-nav-item>
+      </div>
     </div>
-    <h3 class="list-title">正在编辑</h3>
-    <div class="list">
-      <tb-component-nav-item [isEdit]="isEdit" class="list-item"><span class="icon icon-play"></span> 视频
-      </tb-component-nav-item>
-      <tb-component-nav-item [isEdit]="isEdit" class="list-item"><span class="icon icon-music"></span> 音乐
-      </tb-component-nav-item>
-      <tb-component-nav-item [isEdit]="isEdit" class="list-item"><span class="icon icon-stats-bars"></span> 直方图
-      </tb-component-nav-item>
-      <tb-component-nav-item [isEdit]="isEdit" class="list-item"><span class="icon icon-stats-dots"></span> 折线图
-      </tb-component-nav-item>
-      <tb-component-nav-item [isEdit]="isEdit" class="list-item"><span class="icon icon-pie-chart"></span> 饼图
-      </tb-component-nav-item>
-      <tb-component-nav-item [isEdit]="isEdit" class="list-item"><span class="icon icon-map"></span> 地图
-      </tb-component-nav-item>
-    </div>
-  </div>
-  <div class="main">
-    <div class="stage-pc">
-      <tb-example [docs]="docs"
-                  [isEdit]="isEdit"
-                  [currentComponent]="currentComponent"
-                  (change)="editDocs($event)"
-                  (focus)="setCurrentComponent($event)"></tb-example>
-    </div>
-    <div *ngIf="isEdit">
-      <ui-editor
-              *ngIf="currentComponent.type === 'markdown'"
-              (change)="updateHTML($event)"
-              [(ngModel)]="currentComponent.rawValue">
-
-      </ui-editor>
-      <tb-slide-settings *ngIf="currentComponent.type === 'slide'" [config]="currentComponent.config"></tb-slide-settings>
-    </div>
-  </div>
-  <div class="stage-mobile container-fluid">
-    <div class="mobile-phone-settings">
-      <ui-select class="form-control primary input-sm">
-        <ui-option>iPhone 5</ui-option>
-        <ui-option>iPhone 6/7</ui-option>
-        <ui-option>iPhone 6s/7s</ui-option>
-      </ui-select>
-    </div>
-    <div class="mobile-phone">
-      <div class="mobile-screen">
-        <tb-example [docs]="docs"
+    <div class="main">
+      <div class="stage-pc">
+        <tb-example [docs]="article.content"
                     [isEdit]="isEdit"
                     [currentComponent]="currentComponent"
                     (change)="editDocs($event)"
                     (focus)="setCurrentComponent($event)"></tb-example>
       </div>
+      <div *ngIf="isEdit">
+        <ui-editor
+                *ngIf="currentComponent.type === 'markdown'"
+                (change)="updateHTML($event)"
+                [(ngModel)]="currentComponent.rawValue">
+
+        </ui-editor>
+        <tb-slide-settings *ngIf="currentComponent.type === 'slide'" [config]="currentComponent.config"></tb-slide-settings>
+      </div>
+    </div>
+    <div class="stage-mobile container-fluid">
+      <div class="mobile-phone-settings">
+        <ui-select class="form-control primary input-sm">
+          <ui-option>iPhone 5</ui-option>
+          <ui-option>iPhone 6/7</ui-option>
+          <ui-option>iPhone 6s/7s</ui-option>
+        </ui-select>
+      </div>
+      <div class="mobile-phone">
+        <div class="mobile-screen">
+          <tb-example [docs]="article.content"
+                      [isEdit]="isEdit"
+                      [currentComponent]="currentComponent"
+                      (change)="editDocs($event)"
+                      (focus)="setCurrentComponent($event)"></tb-example>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</ui-app>

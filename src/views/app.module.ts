@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule }  from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UiComponentsModule, UiFormsModule, UiHttp } from 'tanbo-ui';
 
 import { ToolkitWrapperComponent } from '../components/toolkit-wrapper/toolkit-wrapper.component';
@@ -28,6 +29,7 @@ UiHttp.config({
 
 @NgModule({
     imports: [
+        BrowserAnimationsModule,
         HttpModule,
         BrowserModule,
         UiComponentsModule,
