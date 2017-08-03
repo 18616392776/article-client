@@ -131,9 +131,7 @@ export class AppComponent {
 
     addArticle() {
         if (this.article.hasOwnProperty('id')) {
-            let article = JSON.parse(JSON.stringify(this.article));
-            article.content = JSON.stringify(article.content);
-            this.appService.updateArticle(article).then(response => {
+            this.appService.updateArticle(this.article).then(response => {
                 if (response.success) {
                     this.notifyController.push({
                         content: '更新成功！',
@@ -147,16 +145,11 @@ export class AppComponent {
                 }
             });
         } else {
-            this.appService.addArticle({
-                title: this.article.title,
-                content: JSON.stringify(this.article.content)
-            }).then(response => {
-                if (!response.success) {
-                    this.notifyController.push({
-                        content: response.message,
-                        type: NotifyType.Warning
-                    });
-                }
+            this.appService.addArticle(this.article).then(response => {
+                this.notifyController.push({
+                    content: response.message,
+                    type: response.success ? NotifyType.Success : NotifyType.Warning
+                });
             });
         }
 
@@ -165,7 +158,6 @@ export class AppComponent {
     changeArticle(id: string) {
         this.appService.getArticle(id).then(response => {
             if (response.success) {
-                response.data.content = JSON.parse(response.data.content);
                 this.article = response.data;
             }
         });
