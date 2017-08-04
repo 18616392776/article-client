@@ -8,7 +8,7 @@ import { DOCUMENT } from '@angular/platform-browser';
 })
 export class ImagePreviewComponent {
     @Input()
-    imgSrc: string;
+    imgSrc: any;
     constructor(@Inject(DOCUMENT) private document: Document) {
     }
 

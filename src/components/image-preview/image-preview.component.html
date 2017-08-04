@@ -3,14 +3,14 @@
     <button type="button"><span class="icon icon-enlarge"></span></button>
   </div>
   <a href="javascript:;">
-    <img [src]="imgSrc">
+    <img [src]="imgSrc.url">
   </a>
 </div>
 <div>
-  <p class="img-title">图片名称</p>
+  <p class="img-title">{{imgSrc.name}}</p>
   <div>
     <div class="input-group">
-      <input #input type="text" class="form-control input-sm" [value]="imgSrc">
+      <input #input type="text" class="form-control input-sm" [value]="imgSrc.url">
       <div class="input-addon">
         <button (click)="copy(input)" class="icon icon-copy btn btn-default btn-sm"></button>
       </div>

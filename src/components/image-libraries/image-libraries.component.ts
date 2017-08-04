@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 
 import { ImageLibrariesService } from './image-libraries.service';
 
@@ -10,17 +10,28 @@ import { ImageLibrariesService } from './image-libraries.service';
         ImageLibrariesService
     ]
 })
-export class ImageLibrariesComponent {
+export class ImageLibrariesComponent implements OnInit {
     @ViewChild('fileupload')
     fileInput: ElementRef;
-    images: Array<any> = [
-        require('../../assets/images/1.jpeg'),
-        require('../../assets/images/2.jpg'),
-        require('../../assets/images/3.jpg'),
-        require('../../assets/images/4.jpeg'),
-    ];
+
+    currentPage: number = 1;
+    pages: number = 1;
+
+    dataList: Array<any> = [];
 
     constructor(private imageLibrariesService: ImageLibrariesService) {
+    }
+
+    ngOnInit() {
+        this.imageLibrariesService.getList(this.currentPage, 18).then(response => {
+            if (response.success) {
+                response.data.dataList.forEach((item: any) => {
+                    item.url = '/public/' + item.url;
+                });
+                this.dataList = response.data.dataList;
+                this.pages = response.data.pages;
+            }
+        })
     }
 
     upload() {
@@ -31,7 +42,12 @@ export class ImageLibrariesComponent {
         }
 
         this.imageLibrariesService.uploadImg(form).then(response => {
-            console.log(response);
+            if (response.success) {
+                response.data.dataList.forEach((item: any) => {
+                    item.url = '/public/' + item.url;
+                    this.dataList.push(item);
+                });
+            }
         });
     }
 }

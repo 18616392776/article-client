@@ -11,4 +11,13 @@ export class ImageLibrariesService {
             body: data
         });
     }
+
+    getList(currentPage: number, pageSize: number = 10) {
+        return this.http.get('/image/get-list', {
+            params: {
+                currentPage,
+                pageSize
+            }
+        });
+    }
 }
