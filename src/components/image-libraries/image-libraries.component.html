@@ -15,13 +15,19 @@
     <tb-image-preview [imgSrc]="item" class="image-list-item" *ngFor="let item of dataList"></tb-image-preview>
     <div class="image-list-item">
       <div class="img-box">
-        <input type="file" multiple="multiple" #fileupload (change)="upload()">
-        <button class="btn-info btn btn-lg"><span class="icon icon-plus"></span> 批量上传</button>
+        <div>
+          <input type="file" multiple #fileupload (change)="upload()">
+          <button class="btn-info btn btn-lg"><span class="icon icon-plus"></span> 批量上传</button>
+        </div>
       </div>
     </div>
   </div>
   <div class="text-center">
-    <ui-pagination class="pagination-sm" [pages]="pages" [currentPage]="currentPage"></ui-pagination>
+    <ui-pagination
+            class="pagination-sm"
+            (change)="change($event)"
+            [pages]="pages"
+            [currentPage]="currentPage"></ui-pagination>
   </div>
 </div>
 <div class="toolkit">

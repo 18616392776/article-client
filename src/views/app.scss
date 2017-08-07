@@ -98,6 +98,7 @@ header {
     }
     .main {
         flex: 1;
+        max-width: calc(100% - 370px - 124px);
         border-left: 1px solid $color-gray-light;
         border-right: 1px solid $color-gray-light;
         display: flex;

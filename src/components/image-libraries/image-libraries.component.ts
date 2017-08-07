@@ -23,15 +23,24 @@ export class ImageLibrariesComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.getList();
+    }
+
+    change(currentPage: number) {
+        this.currentPage = currentPage;
+        this.getList();
+    }
+
+    getList() {
         this.imageLibrariesService.getList(this.currentPage, 18).then(response => {
             if (response.success) {
-                response.data.dataList.forEach((item: any) => {
-                    item.url = '/public/' + item.url;
-                });
+                // response.data.dataList.forEach((item: any) => {
+                //     item.url = '/public/' + item.url;
+                // });
                 this.dataList = response.data.dataList;
                 this.pages = response.data.pages;
             }
-        })
+        });
     }
 
     upload() {
@@ -44,7 +53,6 @@ export class ImageLibrariesComponent implements OnInit {
         this.imageLibrariesService.uploadImg(form).then(response => {
             if (response.success) {
                 response.data.dataList.forEach((item: any) => {
-                    item.url = '/public/' + item.url;
                     this.dataList.push(item);
                 });
             }
