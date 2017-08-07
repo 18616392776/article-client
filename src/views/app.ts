@@ -166,11 +166,13 @@ export class AppComponent {
     publish() {
         this.appService.publishArticle(this.article).then(response => {
             if (response.success) {
-                this.notifyController.push({
-                    content: '发布成功！',
-                    type: NotifyType.Success
-                });
+                this.article.id = response.data.id;
             }
+            this.notifyController.push({
+                content: response.success ? '发布成功！' : response.message,
+                type: NotifyType.Success,
+                autoHide: true
+            });
         });
     }
 }
