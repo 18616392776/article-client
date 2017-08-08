@@ -48,7 +48,9 @@
             <button type="button" (click)="addArticle()" class="btn btn-primary btn-sm">保存</button>
           </li>
           <li>
-            <button type="button" (click)="publish()" class="btn btn-primary btn-sm">发布</button>
+            <ui-loading-button (click)="publish()"
+                               class="btn btn-primary btn-sm"
+                               [loading]="publishing">发布</ui-loading-button>
           </li>
         </ul>
       </div>

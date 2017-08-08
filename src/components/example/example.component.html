@@ -25,7 +25,8 @@
   </div>
 
   <div *ngIf="item.type === 'markdown'" [innerHTML]="item.value" class="clearfix container-fluid"></div>
-  <ui-slide *ngIf="item.type === 'slide'">
+  <ui-slide *ngIf="item.type === 'slide'" [speed]="item.config.speed"
+            [ngStyle]="{paddingBottom: item.config.height / item.config.width * 100 + '%'}">
     <ui-slide-item *ngFor="let bannerItem of item.config.slideItems" [ngStyle]="{backgroundImage: 'url('+bannerItem.src+')'}">
       <a [href]="bannerItem.link || 'javascript:;'" [target]="bannerItem.target"></a>
     </ui-slide-item>

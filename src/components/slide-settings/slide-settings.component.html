@@ -1,5 +1,25 @@
 <tb-toolkit-wrapper>
-  <!--<tb-toolbar></tb-toolbar>-->
+  <tb-toolbar class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 form-inline col-sm-offset-5">
+        <input type="number" [(ngModel)]="config.width" class="form-control input-sm primary" placeholder="宽"> *
+        <input type="number" [(ngModel)]="config.height" class="form-control input-sm primary" placeholder="高">
+      </div>
+      <div class="col-sm-2">
+        <ui-select class="form-control input-sm primary">
+          <ui-option>淡入淡出</ui-option>
+          <ui-option disabled>左右翻滚</ui-option>
+          <ui-option disabled>上下翻滚</ui-option>
+        </ui-select>
+      </div>
+      <div class="col-sm-2">
+        <div class="input-group primary">
+          <input type="number" class="form-control input-sm" [(ngModel)]="config.speed" placeholder="切换时间">
+          <div class="input-addon">毫秒</div>
+        </div>
+      </div>
+    </div>
+  </tb-toolbar>
   <tb-tool-content>
     <table class="table table-hover">
       <thead>

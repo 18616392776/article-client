@@ -30,6 +30,7 @@ const md = marked.setOptions({
     ]
 })
 export class AppComponent {
+    publishing: boolean = false;
     imageLibrariesIsOpen: boolean = false;
     articleListIsOpen: boolean = false;
     isEdit: boolean = true;
@@ -53,7 +54,8 @@ export class AppComponent {
             type: 'slide',
             config: {
                 width: 600,
-                height: 300,
+                height: 200,
+                speed: 2000,
                 slideItems: [{
                     src: '',
                     target: '',
@@ -132,23 +134,18 @@ export class AppComponent {
     addArticle() {
         if (this.article.hasOwnProperty('id')) {
             this.appService.updateArticle(this.article).then(response => {
-                if (response.success) {
-                    this.notifyController.push({
-                        content: '更新成功！',
-                        type: NotifyType.Success
-                    });
-                } else {
-                    this.notifyController.push({
-                        content: response.message,
-                        type: NotifyType.Danger
-                    });
-                }
+                this.notifyController.push({
+                    content: response.message,
+                    type: NotifyType.Danger,
+                    autoHide: true
+                });
             });
         } else {
             this.appService.addArticle(this.article).then(response => {
                 this.notifyController.push({
                     content: response.message,
-                    type: response.success ? NotifyType.Success : NotifyType.Warning
+                    type: response.success ? NotifyType.Success : NotifyType.Warning,
+                    autoHide: true
                 });
             });
         }
@@ -164,7 +161,12 @@ export class AppComponent {
     }
 
     publish() {
+        if (this.publishing) {
+            return;
+        }
+        this.publishing = true;
         this.appService.publishArticle(this.article).then(response => {
+            this.publishing = false;
             if (response.success) {
                 this.article.id = response.data.id;
             }

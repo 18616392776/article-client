@@ -15,7 +15,8 @@ export interface SlideItem {
 export interface SlideConfig {
     width: number;
     height: number;
-    slideItems: Array<SlideItem>
+    speed: number;
+    slideItems: Array<SlideItem>;
 }
 
 export interface SlideType {
@@ -24,5 +25,5 @@ export interface SlideType {
 }
 
 export interface EmptyType {
-    type: 'empty'
+    type: 'empty';
 }
