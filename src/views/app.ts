@@ -153,6 +153,7 @@ export class AppComponent {
     }
 
     changeArticle(id: string) {
+        this.articleListIsOpen = false;
         this.appService.getArticle(id).then(response => {
             if (response.success) {
                 this.article = response.data;

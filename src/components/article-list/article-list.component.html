@@ -1,14 +1,16 @@
 <div class="container-fluid clearfix">
-    <h3>文章列表</h3>
-    <ul class="row list-unstyled">
-        <li class="text-overflow col-sm-4" *ngFor="let item of articleList">
-            <a (click)="onSelected(item.id)" href="javascript:;">{{item.title}}</a>
-        </li>
-    </ul>
-    <div class="text-center">
-        <ui-pagination class="pagination-sm"
-                       (change)="change($event)"
-                       [currentPage]="currentPage"
-                       [pages]="pages"></ui-pagination>
-    </div>
+  <h3>文章列表</h3>
+  <ul class="row list-unstyled">
+    <li class="text-overflow col-sm-4" *ngFor="let item of articleList">
+      <a *ngIf="item.url" [href]="item.url" target="_blank">{{item.title}}</a>
+      <span *ngIf="!item.url">{{item.title}}</span>
+      <button (click)="onSelected(item.id)" class="btn btn-sm btn-default">编辑</button>
+    </li>
+  </ul>
+  <div class="text-center">
+    <ui-pagination class="pagination-sm"
+                   (change)="change($event)"
+                   [currentPage]="currentPage"
+                   [pages]="pages"></ui-pagination>
+  </div>
 </div>
