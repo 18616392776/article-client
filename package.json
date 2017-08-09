@@ -1,5 +1,5 @@
 {
-  "name": "editor",
+  "name": "article-client",
   "version": "1.0.0",
   "description": "云宝宝文章管理前端",
   "main": "server/server.js",
