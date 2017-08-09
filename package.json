@@ -1,7 +1,7 @@
 {
   "name": "editor",
   "version": "1.0.0",
-  "description": "A webpack starter for Angular",
+  "description": "云宝宝文章管理前端",
   "main": "server/server.js",
   "private": true,
   "scripts": {
