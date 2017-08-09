@@ -1,14 +1,13 @@
 const historyApiFallback = require("connect-history-api-fallback");
-const open = require('open');
 const favicon = require('express-favicon');
-const path = require('path');
 const express = require('express');
+
 const app = express();
 
 const globalConfig = require('../global.config');
 
-const appPort = '3389';
-const appBasePath = path.resolve(__dirname, '../dist/');
+const appPort = globalConfig.productionPort;
+const appBasePath = globalConfig.buildPath;
 
 
 app.use(historyApiFallback({}));
@@ -22,5 +21,5 @@ app.listen(appPort, globalConfig.ip, error => {
         console.log(error);
         return;
     }
-    open('http://' + globalConfig.ip + ':' + appPort);
+    console.log('http://' + globalConfig.ip + ':' + appPort);
 });
